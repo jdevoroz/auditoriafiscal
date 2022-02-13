@@ -1,7 +1,7 @@
 pipeline {
-    agent {
-        label "nodejs"
-    }
+    //agent {
+        //label "nodejs"
+    //}
 
     options {
         timeout(time: 1, unit: 'HOURS')
