@@ -18,9 +18,11 @@ pipeline {
                     branch 'develop'
                     branch 'feature/*'
                     branch 'hotfix/*'
+		    branch 'main'
                 }
             }
             steps {
+		sleep 5    
                 script {
                     AMBIENTE = 'develop' 
                     echo "${AMBIENTE}"                                  
@@ -35,6 +37,7 @@ pipeline {
                 }
             }
             steps {
+		sleep 10    
                 script {
                     AMBIENTE = 'qa' 
                     echo "${AMBIENTE}"           
