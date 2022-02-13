@@ -70,9 +70,7 @@ pipeline {
                 	branch "develop" 
                 }
             }
-		 	steps {
-				sh "npm run test"                
-		 	}
+		 	 
 	    }
 
      
