@@ -4,10 +4,7 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS')
     }
-
-    tools {
-        nodejs 'NodeJS 12'
-    }
+ 
     
     environment { 
         art = 'artefacto'
