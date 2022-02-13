@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+     agent { 
+        kubernetes{
+            label 'jenkins-slave'
+        } 
+    }
 
     options {
         timeout(time: 1, unit: 'HOURS')
