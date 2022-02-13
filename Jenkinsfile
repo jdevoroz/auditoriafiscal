@@ -69,7 +69,12 @@ pipeline {
 				anyOf {
                 	branch "develop" 
                 }
-            }
+		steps { 
+            	sleep 10
+            	script {
+                	echo " ...sona Done"
+               		}
+            	}
 		 	 
 	    }
 
@@ -81,10 +86,7 @@ pipeline {
                      branch "release/*"                   
                  }
               }
-            steps {
-                withSonarQubeEnv("sonar") {
-                    echo "Run SonarQube....."
-            }
+            steps { 
             sleep 10
             script {
                 echo " ...sona Done"
