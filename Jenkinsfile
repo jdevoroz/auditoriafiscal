@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+     agent { 
+        kubernetes{
+            label 'jenkins-slave'
+        } 
+    }
 
     options {
         timeout(time: 1, unit: 'HOURS')
@@ -18,11 +22,11 @@ pipeline {
                     branch 'develop'
                     branch 'feature/*'
                     branch 'hotfix/*'
-		    branch 'main'
+            branch 'main'
                 }
             }
             steps {
-		sleep 5    
+        sleep 5    
                 script {
                     AMBIENTE = 'develop' 
                     echo "${AMBIENTE}"                                  
@@ -37,7 +41,7 @@ pipeline {
                 }
             }
             steps {
-		sleep 10    
+        sleep 10    
                 script {
                     AMBIENTE = 'qa' 
                     echo "${AMBIENTE}"           
@@ -59,16 +63,16 @@ pipeline {
             }
         }
 
-		stage("Unit Tests Execution") {
-			when {
-				anyOf {
-                	branch "develop" 
+        stage("Unit Tests Execution") {
+            when {
+                anyOf {
+                    branch "develop" 
                 }
             }
-		 	steps {
-				sh "npm run test"                
-		 	}
-	    }
+            steps {
+                   echo " ...sona Done"               
+            }
+        }
 
      
         stage('SonarQube Review') {
@@ -78,11 +82,7 @@ pipeline {
                      branch "release/*"                   
                  }
               }
-            steps {
-                withSonarQubeEnv("sonar") {
-                    echo "Run SonarQube....."
-            }
-            sleep 10
+            steps {  
             script {
                 echo " ...sona Done"
                }
@@ -187,8 +187,8 @@ pipeline {
             }  
             steps {
                script {
-        			echo ' branch: ' + env.BRANCH_NAME 
-        		 
+                    echo ' branch: ' + env.BRANCH_NAME 
+                 
                }
             }
         }
